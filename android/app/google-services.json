@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "261082625394",
+    "project_id": "stocks-prediction-5788c",
+    "storage_bucket": "stocks-prediction-5788c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261082625394:android:80c57c50082dddd05fd9eb",
+        "android_client_info": {
+          "package_name": "com.example.stocks_prediction"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC7Q9ZaZtPZmAc-Ri2a-5uY5S63zN9xCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
