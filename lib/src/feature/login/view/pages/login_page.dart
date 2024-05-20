@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stocks_prediction/src/config/sizes/sizes.dart';
 import 'package:stocks_prediction/src/config/theme/theme.dart';
-import 'package:stocks_prediction/src/core/auth_repo/user_repo.dart';
-import 'package:stocks_prediction/src/feature/login/controller/login_controller.dart';
+ import 'package:stocks_prediction/src/feature/login/controller/login_controller.dart';
 import 'package:stocks_prediction/src/feature/login/model/login_form_model.dart';
 import 'package:stocks_prediction/src/feature/login/view/pages/login_form_widget.dart';
 import 'package:stocks_prediction/src/feature/register/view/page/register_page.dart';
@@ -14,7 +13,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
-    final userRepo = Get.put(UserRepository());
+   final formkey = GlobalKey<FormState>();
 
     return Scaffold(
       body: Stack(
@@ -32,7 +31,7 @@ class LoginPage extends StatelessWidget {
                   height: context.screenHeight * .17,
                 ),
                 Container(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   width: context.screenWidth * .4,
                   height: context.screenHeight * .75,
                   decoration: BoxDecoration(
@@ -40,7 +39,7 @@ class LoginPage extends StatelessWidget {
                       color:
                           AppTheme.lightAppColors.background.withOpacity(.8)),
                   child: Form(
-                    key: controller.formkey,
+                    key: formkey,
                     child: Column(
                       children: [
                         const Text(
@@ -81,7 +80,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            if (controller.formkey.currentState!.validate()) {
+                            if (formkey.currentState!.validate()) {
                               controller.onLogin();
                               // userRepo
                               //     .getUserDetails(controller.email.text.trim());

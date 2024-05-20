@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stocks_prediction/src/config/theme/theme.dart';
 import 'package:stocks_prediction/src/core/auth_repo/auth_repo.dart';
+import 'package:stocks_prediction/src/feature/dashboard/pages/dashboard_drawe.dart';
 import 'package:stocks_prediction/src/feature/login/model/user_model.dart';
 
 class RegisterController extends GetxController {
@@ -11,7 +12,6 @@ class RegisterController extends GetxController {
   final phone = TextEditingController();
   final name = TextEditingController();
   final _db = FirebaseFirestore.instance;
-  final formkey = GlobalKey<FormState>();
 
   final confirmPassword = TextEditingController();
 
@@ -19,26 +19,26 @@ class RegisterController extends GetxController {
     if (GetUtils.isEmail(email!)) {
       return null;
     }
-    return "Email is not valid";
+    return "Email is  Inalid";
   }
 
   vaildPhoneNumber(String? phoneNumber) {
     if (GetUtils.isPhoneNumber(phoneNumber!) && phoneNumber.length >= 9) {
       return null;
     }
-    return "Invalid Phone number";
+    return " Phone number is Invalid";
   }
 
   vaildatePassword(String? password) {
     if (!GetUtils.isLengthGreaterOrEqual(password, 6)) {
-      return 'Password is not vaild';
+      return 'Password is  Invaild';
     }
     return null;
   }
 
   validName(String? address) {
     if (address!.isEmpty) {
-      return "Username is not valid";
+      return "Name is Invalid";
     }
     return null;
   }
@@ -85,13 +85,13 @@ class RegisterController extends GetxController {
             .createUserWithEmailPassword(user.email, user.password);
         if (await code) {
           createUser(user);
-           Get.snackbar("Success", " Account  Created Successfullly",
+          Get.snackbar("Success", " Account  Created Successfullly",
               snackPosition: SnackPosition.BOTTOM,
               colorText: AppTheme.lightAppColors.background,
               backgroundColor: Colors.green);
-          // Get.to(const NavB.arWidget());
+          Get.to(const DashboardDrawer());
         } else {
-          Get.snackbar("ERROR", "Invalid datas",
+          Get.snackbar("ERROR", "Invalid Data",
               snackPosition: SnackPosition.BOTTOM,
               colorText: AppTheme.lightAppColors.background,
               backgroundColor: Colors.red);

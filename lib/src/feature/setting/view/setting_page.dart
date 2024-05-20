@@ -30,6 +30,8 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final formkey = GlobalKey<FormState>();
+
     final email = _authRepo.firebaseUser.value!.email;
     final controller = Get.put(SettingController());
 
@@ -41,18 +43,18 @@ class _SettingPageState extends State<SettingPage> {
               UserModel userData = snapShot.data as UserModel;
 
               return Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 width: context.screenWidth * .4,
                 height: context.screenHeight * .8,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: AppTheme.lightAppColors.background.withOpacity(.8)),
                 child: Form(
-                  key: controller.formkey,
+                  key: formkey,
                   child: Column(
                     children: [
                       const Text(
-                        "REGISTER",
+                        "SETTINGS",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.w600),
                       ),
@@ -62,7 +64,7 @@ class _SettingPageState extends State<SettingPage> {
                       FormWidget(
                           formModel: FormModel(
                               controller: controller.email,
-                              enableText: false,
+                              enableText: true,
                               hintText: "Email",
                               invisible: false,
                               validator: (email) =>
@@ -77,7 +79,7 @@ class _SettingPageState extends State<SettingPage> {
                           formModel: FormModel(
                               controller: controller.name,
                               enableText: false,
-                              hintText: "Username",
+                              hintText: "Name",
                               invisible: false,
                               validator: (email) =>
                                   controller.validName(email!),
@@ -101,9 +103,12 @@ class _SettingPageState extends State<SettingPage> {
                                 FilteringTextInputFormatter.digitsOnly,
                               ],
                               onTap: null)),
+                      SizedBox(
+                        height: context.screenHeight * .05,
+                      ),
                       GestureDetector(
                         onTap: () {
-                          if (controller.formkey.currentState!.validate()) {
+                          if (formkey.currentState!.validate()) {
                             controller.updateUserData(userData.id);
                           } else {}
                         },
@@ -112,11 +117,10 @@ class _SettingPageState extends State<SettingPage> {
                           height: context.screenHeight * .08,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
-                              color: AppTheme.lightAppColors.maincolor
-                                  .withOpacity(.2)),
+                              color: AppTheme.lightAppColors.primary),
                           child: Center(
                             child: Text(
-                              "Updtae",
+                              "UPDATE",
                               style: TextStyle(
                                   color: AppTheme.lightAppColors.background,
                                   fontSize: 15,

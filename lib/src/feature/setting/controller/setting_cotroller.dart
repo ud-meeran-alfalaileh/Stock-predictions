@@ -8,7 +8,6 @@ class SettingController extends GetxController {
   final phone = TextEditingController();
   final name = TextEditingController();
   final _db = FirebaseFirestore.instance;
-  final formkey = GlobalKey<FormState>();
 
   final confirmPassword = TextEditingController();
 

@@ -6,20 +6,19 @@ import 'package:stocks_prediction/src/feature/dashboard/pages/dashboard_drawe.da
 class LoginController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
-  final formkey = GlobalKey<FormState>();
 
   final _auth = FirebaseAuth.instance;
   emailValid(String email) {
     if (GetUtils.isEmail(email)) {
       return null;
     } else {
-      return "Fill the Field";
+      return "Invalid Email";
     }
   }
 
   vaildPassword(String? password) {
     if (!GetUtils.isLengthGreaterOrEqual(password, 6)) {
-      return "'Invalid password'".tr;
+      return "Invalid Password".tr;
     }
     return null;
   }
@@ -39,11 +38,10 @@ class LoginController extends GetxController {
         email: email.text,
         password: password.text,
       );
-      print("object");
 
       Get.to(DashboardDrawer());
     } on FirebaseAuthException {
-      Get.snackbar("ERROR", "Email or Password is invild",
+      Get.snackbar("ERROR", "Email or Password is Invalid",
           snackPosition: SnackPosition.BOTTOM,
           colorText: Colors.white,
           backgroundColor: Colors.red);

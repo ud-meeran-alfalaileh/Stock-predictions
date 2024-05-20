@@ -51,16 +51,31 @@ class Stock {
 
   factory Stock.fromJson(Map<String, dynamic> json) {
     return Stock(
-      symbol: json['symbol'],
-      name: json['name'],
-      price: json['price'] ?? 0.0,
-      dayLow: json['dayLow'] ?? 0.0,
-      dayHigh: json['dayHigh'] ?? 0.0,
-      yearHigh: json['yearHigh'] ?? 0.0,
-      yearLow: json['yearLow'] ?? 0.0,
-      priceAvg50: json['priceAvg50'] ?? 0.0,
-      priceAvg200: json['priceAvg200'] ?? 0.0,
-      exchange: json['exchange'],
+      symbol: json['symbol'] ?? '',
+      name: json['name'] ?? '',
+      price: json['price']?.toDouble() ?? 0.0,
+      dayLow: json['dayLow']?.toDouble() ?? 0.0,
+      dayHigh: json['dayHigh']?.toDouble() ?? 0.0,
+      yearHigh: json['yearHigh']?.toDouble() ?? 0.0,
+      yearLow: json['yearLow']?.toDouble() ?? 0.0,
+      priceAvg50: json['priceAvg50']?.toDouble() ?? 0.0,
+      priceAvg200: json['priceAvg200']?.toDouble() ?? 0.0,
+      exchange: json['exchange'] ?? '',
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'symbol': symbol,
+      'name': name,
+      'price': price,
+      'dayLow': dayLow,
+      'dayHigh': dayHigh,
+      'yearHigh': yearHigh,
+      'yearLow': yearLow,
+      'priceAvg50': priceAvg50,
+      'priceAvg200': priceAvg200,
+      'exchange': exchange,
+    };
   }
 }

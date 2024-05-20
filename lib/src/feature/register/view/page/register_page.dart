@@ -14,6 +14,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(RegisterController());
+    final formkey = GlobalKey<FormState>();
 
     return Scaffold(
       body: Stack(
@@ -37,7 +38,7 @@ class RegisterPage extends StatelessWidget {
                       color:
                           AppTheme.lightAppColors.background.withOpacity(.8)),
                   child: Form(
-                    key: controller.formkey,
+                    key: formkey,
                     child: Column(
                       children: [
                         const Text(
@@ -66,7 +67,7 @@ class RegisterPage extends StatelessWidget {
                             formModel: FormModel(
                                 controller: controller.name,
                                 enableText: false,
-                                hintText: "Username",
+                                hintText: "Name",
                                 invisible: false,
                                 validator: (email) =>
                                     controller.validName(email!),
@@ -98,16 +99,16 @@ class RegisterPage extends StatelessWidget {
                                 controller: controller.password,
                                 enableText: false,
                                 hintText: "Password",
-                                invisible: false,
+                                invisible: true,
                                 validator: (password) =>
                                     controller.vaildatePassword(password!),
                                 type: TextInputType.text,
                                 inputFormat: [],
                                 onTap: null)),
-                        Spacer(),
+                        const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            if (controller.formkey.currentState!.validate()) {
+                            if (formkey.currentState!.validate()) {
                               controller.onSignup(UserModel(
                                   name: controller.name.text.trim(),
                                   email: controller.email.text.trim(),

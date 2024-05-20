@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:stocks_prediction/firebase_options.dart';
 import 'package:stocks_prediction/src/config/theme/theme.dart';
 import 'package:stocks_prediction/src/core/auth_repo/auth_repo.dart';
-import 'package:stocks_prediction/src/feature/dashboard/pages/dashboard_drawe.dart';
+import 'package:stocks_prediction/src/feature/dashboard/pages/auth_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: AppTheme.light,
       debugShowCheckedModeBanner: false,
-      home: const DashboardDrawer(),
+      home: AuthWrapper(),
     );
   }
 }
